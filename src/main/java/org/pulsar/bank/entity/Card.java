@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Card {
 
     private UUID id;
-    private String number;
+    private CardNumber number;
     private User owner;
     private Status status;
     private BigDecimal balance;
