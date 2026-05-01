@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: ${BANK_SERVICE_DATABASE_URL}
+    username: ${BANK_SERVICE_DATABASE_USERNAME}
+    password: ${BANK_SERVICE_DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver

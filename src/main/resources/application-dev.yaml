@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5544/bank_database
+    username: developer
+    password: dev_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
