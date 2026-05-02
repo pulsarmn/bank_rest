@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.YearMonth;
 import java.util.UUID;
 
 
@@ -31,11 +32,16 @@ public class Card {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private User owner;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.ACTIVE;
 
+    @Builder.Default
     @Column(name = "balance")
-    private BigDecimal balance;
+    private BigDecimal balance = BigDecimal.ZERO;
+
+    @Column(name = "expires_at")
+    private YearMonth expiresAt;
 
     public enum Status {
         ACTIVE,
