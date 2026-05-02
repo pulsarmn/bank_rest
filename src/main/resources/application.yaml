@@ -3,3 +3,9 @@ spring:
     active: dev
   jpa:
     open-in-view: false
+  liquibase:
+    change-log: classpath:/db/migration/db.changelog-master.yaml
+
+logging:
+  level:
+    root: INFO
