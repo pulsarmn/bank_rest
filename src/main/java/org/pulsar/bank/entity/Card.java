@@ -2,7 +2,6 @@ package org.pulsar.bank.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.pulsar.bank.entity.converter.CardNumberConverter;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -22,8 +21,8 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Convert(converter = CardNumberConverter.class)
-    private CardNumber number;
+    @Column(name = "encrypted_number")
+    private String encryptedNumber;
 
     @JoinColumn(name = "owner_id")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
