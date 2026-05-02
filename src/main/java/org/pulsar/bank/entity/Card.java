@@ -2,9 +2,9 @@ package org.pulsar.bank.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.pulsar.bank.entity.converter.CardNumberConverter;
 
 import java.math.BigDecimal;
+import java.time.YearMonth;
 import java.util.UUID;
 
 
@@ -22,18 +22,26 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Convert(converter = CardNumberConverter.class)
-    private CardNumber number;
+    @Column(name = "encrypted_number")
+    private String encryptedNumber;
+
+    @Column(name = "last_four_digits")
+    private String lastFourDigits;
 
     @JoinColumn(name = "owner_id")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private User owner;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.ACTIVE;
 
+    @Builder.Default
     @Column(name = "balance")
-    private BigDecimal balance;
+    private BigDecimal balance = BigDecimal.ZERO;
+
+    @Column(name = "expires_at")
+    private YearMonth expiresAt;
 
     public enum Status {
         ACTIVE,

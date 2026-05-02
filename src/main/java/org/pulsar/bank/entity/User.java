@@ -2,7 +2,9 @@ package org.pulsar.bank.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,11 +27,12 @@ public class User {
     @Column(name = "login")
     private String login;
 
-    @Column(name = "hash_password")
-    private String hashPassword;
+    @Column(name = "password_hash")
+    private String passwordHash;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role role = Role.USER;
 
     @Column(name = "first_name")
     private String firstName;
@@ -37,11 +40,14 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @CreationTimestamp
+    private Instant createdAt;
+
     @Builder.Default
-    @OneToMany(mappedBy = "owner") // TODO: maybe cascade
+    @OneToMany(mappedBy = "owner")
     private List<Card> cards = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "user") // TODO: maybe cascade
+    @OneToMany(mappedBy = "user")
     private List<RefreshToken> refreshTokens = new ArrayList<>();
 }
