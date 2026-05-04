@@ -4,4 +4,5 @@ spring-boot-starter-liquibase = { module = 'org.springframework.boot:spring-boot
 spring-boot-starter-webmvc = { module = 'org.springframework.boot:spring-boot-starter-webmvc' }
 spring-boot-starter-validation = { module = 'org.springframework.boot:spring-boot-starter-validation' }
 spring-security-crypto = { module = 'org.springframework.security:spring-security-crypto' }
+spring-boot-starter-test = { module = 'org.springframework.boot:spring-boot-starter-test' }
 postgresql-driver = { module = 'org.postgresql:postgresql' }

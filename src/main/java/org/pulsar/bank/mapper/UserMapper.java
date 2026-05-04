@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@RequiredArgsConstructor
 public class UserMapper {
 
+    // TODO: maybe make this method static
     public User mapToUser(RegistrationRequest registrationRequest) {
         return User.builder()
                 .login(registrationRequest.login())
