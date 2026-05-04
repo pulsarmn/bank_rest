@@ -3,7 +3,10 @@ package org.pulsar.bank.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 
+
+@Builder
 public record RegistrationRequest(
 
         @NotBlank
