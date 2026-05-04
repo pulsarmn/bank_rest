@@ -19,10 +19,13 @@ dependencies {
     implementation libs.spring.security.crypto
 
     testImplementation libs.spring.boot.starter.test
+    testImplementation libs.spring.boot.testcontainers
 }
 
 dependencies {
     runtimeOnly libs.postgresql.driver
+    testImplementation libs.test.containers.junit
+    testImplementation libs.test.containers
 }
 
 java {
