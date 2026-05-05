@@ -1,4 +1,4 @@
-package org.pulsar.bank.security;
+package org.pulsar.bank.security.jwt;
 
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSSigner;
