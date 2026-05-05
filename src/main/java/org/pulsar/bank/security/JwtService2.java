@@ -11,8 +11,10 @@ import lombok.RequiredArgsConstructor;
 import org.pulsar.bank.config.properties.JwtProperties;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.security.interfaces.ECPrivateKey;
 import java.time.Instant;
+import java.util.Base64;
 import java.util.Date;
 
 
@@ -25,6 +27,7 @@ public class JwtService {
     private final ECPrivateKey refreshTokenPrivateKey;
 
     private static final JWSAlgorithm DEFAULT_ALGORITHM = JWSAlgorithm.ES384;
+    private static final SecureRandom secureRandom = new SecureRandom();
 
     public String generateAccessToken(JwtClaims claims) {
         return generateToken(claims, jwtProperties.getAccessToken().getExpirationMillis(), accessTokenPrivateKey);
@@ -32,6 +35,12 @@ public class JwtService {
 
     public String generateRefreshToken(JwtClaims claims) {
         return generateToken(claims, jwtProperties.getRefreshToken().getExpirationMillis(), refreshTokenPrivateKey);
+    }
+
+    public String generateRefreshToken() {
+        byte[] tokenBytes = new byte[32];
+        secureRandom.nextBytes(tokenBytes);
+        return Base64.getEncoder().encodeToString(tokenBytes);
     }
 
     private String generateToken(JwtClaims claims, long expirationMillis, ECPrivateKey privateKey) {
