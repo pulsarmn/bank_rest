@@ -9,5 +9,3 @@ app:
   jwt:
     access-token:
       private-key: ${BANK_SERVICE_ACCESS_TOKEN_PRIVATE_KEY}
-    refresh-token:
-      private-key: ${BANK_SERVICE_REFRESH_TOKEN_PRIVATE_KEY}

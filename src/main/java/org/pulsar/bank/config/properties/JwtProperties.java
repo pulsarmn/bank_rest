@@ -24,7 +24,6 @@ public class JwtProperties {
     @Data
     public static class RefreshToken {
 
-        private String privateKey;
         private long expirationMillis = 604_800_000;
     }
 }

@@ -23,16 +23,6 @@ public class JwtConfiguration {
     @Bean
     ECPrivateKey accessTokenPrivateKey() throws Exception {
         String rawPrivateKey = jwtProperties.getAccessToken().getPrivateKey();
-        return convert(rawPrivateKey);
-    }
-
-    @Bean
-    ECPrivateKey refreshTokenPrivateKey() throws Exception {
-        String rawPrivateKey = jwtProperties.getRefreshToken().getPrivateKey();
-        return convert(rawPrivateKey);
-    }
-
-    private ECPrivateKey convert(String rawPrivateKey) throws Exception {
         byte[] privateKeyBytes = Base64.getDecoder().decode(rawPrivateKey);
         KeyFactory keyFactory = KeyFactory.getInstance(DEFAULT_ALGORITHM);
         PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(privateKeyBytes);

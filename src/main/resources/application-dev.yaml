@@ -14,5 +14,3 @@ app:
   jwt:
     access-token:
       private-key: MIG2AgEAMBAGByqGSM49AgEGBSuBBAAiBIGeMIGbAgEBBDBt8mtM+jAKlIdAXScm4nGomFA83nVrH3m3AC6IrjH/Q9HBb4cl7HyBLycRmUK+N0OhZANiAAQiLurUtCYWSuhNtceHyGwTugLE9yntCn81RTSfXk+9iXsNHRYb/VX+kaXMNvWcyaj3cNeqZc+vcWa2ccCqJzR9wRwEAxuIf2+yTbwEWog6yhsS/55vPHN9taeIX83vVzg=
-    refresh-token:
-      private-key: MIG2AgEAMBAGByqGSM49AgEGBSuBBAAiBIGeMIGbAgEBBDALHqnsqLffUPofLUluiu/1KThlw3Gy0St8bZrJhrX9gcD3dtKaLdxc7J+Qr/w+LJShZANiAAR2w3uoX86hZXV7hLDO8pjCKWQ87tckOVRBSI6VAp/iLq7v/oi3HTSt9KPPSKMWdj8PsK+Qgn5DOXdJpBu5l6YAWP1ztdJEe6bJRqaksRmrDOn4T/FDM8rMfrciWz580ao=
