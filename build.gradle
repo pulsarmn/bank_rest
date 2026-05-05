@@ -24,6 +24,10 @@ dependencies {
 
 dependencies {
     runtimeOnly libs.postgresql.driver
+    implementation libs.nimbus.jose.jwt
+}
+
+dependencies {
     testImplementation libs.test.containers.junit
     testImplementation libs.test.containers
 }
