@@ -15,19 +15,29 @@ import java.security.interfaces.ECPrivateKey;
 import java.time.Instant;
 import java.util.Date;
 
+
 @Service
 @RequiredArgsConstructor
 public class JwtService {
 
     private final JwtProperties jwtProperties;
     private final ECPrivateKey accessTokenPrivateKey;
+    private final ECPrivateKey refreshTokenPrivateKey;
 
     private static final JWSAlgorithm DEFAULT_ALGORITHM = JWSAlgorithm.ES384;
 
     public String generateAccessToken(JwtClaims claims) {
+        return generateToken(claims, jwtProperties.getAccessToken().getExpirationMillis(), accessTokenPrivateKey);
+    }
+
+    public String generateRefreshToken(JwtClaims claims) {
+        return generateToken(claims, jwtProperties.getRefreshToken().getExpirationMillis(), refreshTokenPrivateKey);
+    }
+
+    private String generateToken(JwtClaims claims, long expirationMillis, ECPrivateKey privateKey) {
         JWSHeader header = new JWSHeader.Builder(DEFAULT_ALGORITHM).build();
 
-        Date expirationTime = getExpirationTime(jwtProperties.getAccessToken().getExpirationMillis());
+        Date expirationTime = getExpirationTime(jwtProperties.getRefreshToken().getExpirationMillis());
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
                 .subject(claims.getSubject())
                 .claim("role", claims.getClaim("role"))
@@ -35,7 +45,7 @@ public class JwtService {
                 .build();
 
         try {
-            ECDSASigner signer = new ECDSASigner(accessTokenPrivateKey);
+            ECDSASigner signer = new ECDSASigner(privateKey);
             SignedJWT signedToken = new SignedJWT(header, jwtClaimsSet);
             signedToken.sign(signer);
 

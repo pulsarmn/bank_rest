@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -24,6 +25,7 @@ public class AuthService {
                 .subject(authentication.getName())
                 .build();
         String accessToken = jwtService.generateAccessToken(claims);
+        String rawRefreshToken = jwtService.generateRefreshToken(claims);
         System.out.println();
         // TODO: generate JWT pair
     }
