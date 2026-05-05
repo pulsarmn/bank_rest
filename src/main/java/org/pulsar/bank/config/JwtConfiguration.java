@@ -1,6 +1,9 @@
 package org.pulsar.bank.config;
 
 
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.JWSSigner;
+import com.nimbusds.jose.crypto.ECDSASigner;
 import lombok.RequiredArgsConstructor;
 import org.pulsar.bank.config.properties.JwtProperties;
 import org.springframework.context.annotation.Bean;
@@ -27,5 +30,10 @@ public class JwtConfiguration {
         KeyFactory keyFactory = KeyFactory.getInstance(DEFAULT_ALGORITHM);
         PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
         return (ECPrivateKey) keyFactory.generatePrivate(privateKeySpec);
+    }
+
+    @Bean
+    JWSSigner jwsSigner(ECPrivateKey accessTokenPrivateKey) throws Exception {
+        return new ECDSASigner(accessTokenPrivateKey);
     }
 }
