@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-@ToString(exclude = {"cards", "refreshTokens"})
+@ToString(exclude = {"cards", "refreshTokens", "passwordHash"})
 @EqualsAndHashCode(exclude = {"cards", "refreshTokens"})
 @NoArgsConstructor
 @AllArgsConstructor
