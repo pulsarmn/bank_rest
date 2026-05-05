@@ -2,7 +2,9 @@ package org.pulsar.bank.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.pulsar.bank.dto.AuthRequest;
 import org.pulsar.bank.dto.RegistrationRequest;
+import org.pulsar.bank.service.AuthService;
 import org.pulsar.bank.service.RegistrationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthRestController {
 
+    private final AuthService authService;
     private final RegistrationService registrationService;
 
     @PostMapping("/register")
@@ -24,5 +27,11 @@ public class AuthRestController {
         registrationService.register(registrationRequest);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Void> login(@RequestBody @Validated AuthRequest authRequest) {
+        authService.authenticate(authRequest);
+        return ResponseEntity.ok().build();
     }
 }
