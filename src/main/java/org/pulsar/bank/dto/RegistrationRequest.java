@@ -25,4 +25,10 @@ public record RegistrationRequest(
         @Size(min = 1, max = 32)
         String lastName
 ) {
+
+    @Override
+    public String toString() {
+        return "RegistrationRequest{login=%s, firstName=%s, lastName=%s}"
+                .formatted(login, firstName, lastName);
+    }
 }
