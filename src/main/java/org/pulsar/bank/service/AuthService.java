@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.pulsar.bank.config.properties.JwtProperties;
 import org.pulsar.bank.dto.AuthRequest;
 import org.pulsar.bank.dto.AuthResponse;
+import org.pulsar.bank.entity.RefreshToken;
 import org.pulsar.bank.entity.User;
 import org.pulsar.bank.security.jwt.JwtClaims;
 import org.pulsar.bank.security.jwt.JwtService;
@@ -41,8 +42,8 @@ public class AuthService {
         String rawRefreshToken = jwtService.generateRefreshToken();
 
         User user = ((SecurityUser) authentication.getPrincipal()).getUser();
-        refreshTokenService.create(user, rawRefreshToken);
-        return new AuthResponse(accessToken, rawRefreshToken);
+        RefreshToken refreshToken = refreshTokenService.create(user, rawRefreshToken);
+        return new AuthResponse(accessToken, rawRefreshToken, refreshToken.getId().toString());
     }
 
     private JwtClaims buildClaims(Authentication authentication) {
