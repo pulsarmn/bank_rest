@@ -42,7 +42,7 @@ public class AuthRestController {
 
     @PostMapping("/refresh")
     public ResponseEntity<AuthResponse> refresh(@RequestBody @Validated RefreshRequest refreshRequest) {
-        AuthResponse authResponse = refreshTokenService.getNewAccessToken(refreshRequest);
+        AuthResponse authResponse = refreshTokenService.generateNewTokenPair(refreshRequest);
         return ResponseEntity.ok(authResponse);
     }
 }
