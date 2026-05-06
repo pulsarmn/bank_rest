@@ -2,6 +2,8 @@ package org.pulsar.bank.exception.handler;
 
 
 import org.pulsar.bank.dto.ErrorResponse;
+import org.pulsar.bank.exception.InvalidRefreshTokenException;
+import org.pulsar.bank.exception.RefreshTokenNotFoundException;
 import org.pulsar.bank.exception.UserAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -34,6 +37,20 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handle(AuthenticationException e) {
         ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.UNAUTHORIZED, "Invalid login or password");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(errorResponse);
+    }
+
+    @ExceptionHandler({RefreshTokenNotFoundException.class, InvalidRefreshTokenException.class})
+    public ResponseEntity<ErrorResponse> handleInvalidRefresh() {
+        ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.UNAUTHORIZED, "Invalid refresh token");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(errorResponse);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handle(IllegalArgumentException e) {
+        ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.BAD_REQUEST, "Bad request");
+        return ResponseEntity.badRequest()
                 .body(errorResponse);
     }
 
