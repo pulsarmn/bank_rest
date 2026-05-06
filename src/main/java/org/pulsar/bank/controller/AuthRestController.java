@@ -4,8 +4,10 @@ package org.pulsar.bank.controller;
 import lombok.RequiredArgsConstructor;
 import org.pulsar.bank.dto.AuthRequest;
 import org.pulsar.bank.dto.AuthResponse;
+import org.pulsar.bank.dto.RefreshRequest;
 import org.pulsar.bank.dto.RegistrationRequest;
 import org.pulsar.bank.service.AuthService;
+import org.pulsar.bank.service.RefreshTokenService;
 import org.pulsar.bank.service.RegistrationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,7 @@ public class AuthRestController {
 
     private final AuthService authService;
     private final RegistrationService registrationService;
+    private final RefreshTokenService refreshTokenService;
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody @Validated RegistrationRequest registrationRequest) {
@@ -34,6 +37,12 @@ public class AuthRestController {
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody @Validated AuthRequest authRequest) {
         AuthResponse authResponse = authService.authenticate(authRequest);
+        return ResponseEntity.ok(authResponse);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthResponse> refresh(@RequestBody @Validated RefreshRequest refreshRequest) {
+        AuthResponse authResponse = refreshTokenService.generateNewTokenPair(refreshRequest);
         return ResponseEntity.ok(authResponse);
     }
 }

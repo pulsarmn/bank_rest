@@ -68,6 +68,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+  /api/auth/refresh:
+    post:
+      tags: [Authentication]
+      description: Issues a new access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefreshRequest"
+      responses:
+        200:
+          description: Successful access token renewal
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        401:
+          description: Invalid refresh token or user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 
 components:
   schemas:
@@ -103,12 +126,21 @@ components:
           minLength: 8
           maxLength: 64
           example: "12345678"
+    RefreshRequest:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+        refreshTokenId:
+          type: string
     AuthResponse:
       type: object
       properties:
         accessToken:
           type: string
         refreshToken:
+          type: string
+        refreshTokenId:
           type: string
     ErrorResponse:
       type: object
