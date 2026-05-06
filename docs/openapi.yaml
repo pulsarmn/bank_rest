@@ -45,6 +45,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+  /api/auth/login:
+    post:
+      tags: [Authentication]
+      description: Authenticates a user in the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthRequest"
+      responses:
+        200:
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+        401:
+          description: Invalid login or password
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 
 components:
   schemas:
@@ -67,6 +90,26 @@ components:
           type: string
           minLength: 1
           maxLength: 32
+    AuthRequest:
+      type: object
+      properties:
+        login:
+          type: string
+          minLength: 4
+          maxLength: 64
+          example: "pulsarmn"
+        password:
+          type: string
+          minLength: 8
+          maxLength: 64
+          example: "12345678"
+    AuthResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
     ErrorResponse:
       type: object
       properties:
