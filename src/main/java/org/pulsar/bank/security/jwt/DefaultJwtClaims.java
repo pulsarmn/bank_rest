@@ -31,20 +31,23 @@ public class DefaultJwtClaims implements JwtClaims {
         return new LinkedHashMap<>(claims);
     }
 
-    public static class Builder {
+    public static class Builder implements JwtClaims.Builder {
 
         private final Map<String, Object> claims = new LinkedHashMap<>();
 
+        @Override
         public Builder subject(final String sub) {
             claims.put("sub", sub);
             return this;
         }
 
+        @Override
         public Builder claim(final String name, final Object value) {
             claims.put(name, value);
             return this;
         }
 
+        @Override
         public JwtClaims build() {
             return new DefaultJwtClaims(claims);
         }

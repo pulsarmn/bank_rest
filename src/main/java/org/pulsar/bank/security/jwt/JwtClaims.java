@@ -13,4 +13,13 @@ public interface JwtClaims {
     static DefaultJwtClaims.Builder builder() {
         return new DefaultJwtClaims.Builder();
     }
+
+    interface Builder {
+
+        Builder subject(String sub);
+
+        Builder claim(String name, Object value);
+
+        JwtClaims build();
+    }
 }
