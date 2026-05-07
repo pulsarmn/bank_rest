@@ -3,7 +3,7 @@ package org.pulsar.bank.service;
 
 import lombok.RequiredArgsConstructor;
 import org.pulsar.bank.dto.AuthResponse;
-import org.pulsar.bank.dto.RefreshRequest;
+import org.pulsar.bank.dto.request.RefreshRequest;
 import org.pulsar.bank.entity.RefreshToken;
 import org.pulsar.bank.entity.User;
 import org.pulsar.bank.exception.InvalidRefreshTokenException;

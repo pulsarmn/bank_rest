@@ -1,4 +1,4 @@
-package org.pulsar.bank.dto;
+package org.pulsar.bank.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 

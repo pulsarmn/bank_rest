@@ -4,7 +4,7 @@ package org.pulsar.bank.mapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.pulsar.bank.dto.RegistrationRequest;
+import org.pulsar.bank.dto.request.RegistrationRequest;
 import org.pulsar.bank.entity.Role;
 import org.pulsar.bank.entity.User;
 

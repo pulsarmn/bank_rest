@@ -1,7 +1,7 @@
 package org.pulsar.bank.it.service;
 
 import org.junit.jupiter.api.Test;
-import org.pulsar.bank.dto.RegistrationRequest;
+import org.pulsar.bank.dto.request.RegistrationRequest;
 import org.pulsar.bank.entity.Role;
 import org.pulsar.bank.entity.User;
 import org.pulsar.bank.exception.UserAlreadyExistsException;

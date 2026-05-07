@@ -2,10 +2,10 @@ package org.pulsar.bank.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.pulsar.bank.dto.AuthRequest;
+import org.pulsar.bank.dto.request.AuthRequest;
 import org.pulsar.bank.dto.AuthResponse;
-import org.pulsar.bank.dto.RefreshRequest;
-import org.pulsar.bank.dto.RegistrationRequest;
+import org.pulsar.bank.dto.request.RefreshRequest;
+import org.pulsar.bank.dto.request.RegistrationRequest;
 import org.pulsar.bank.service.AuthService;
 import org.pulsar.bank.service.RefreshTokenService;
 import org.pulsar.bank.service.RegistrationService;
