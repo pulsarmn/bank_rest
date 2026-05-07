@@ -9,3 +9,4 @@ app:
   jwt:
     access-token:
       private-key: ${BANK_SERVICE_ACCESS_TOKEN_PRIVATE_KEY}
+      public-key: ${BANK_SERVICE_ACCESS_TOKEN_PUBLIC_KEY}

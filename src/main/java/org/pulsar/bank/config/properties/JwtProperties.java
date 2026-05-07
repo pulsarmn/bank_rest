@@ -33,6 +33,12 @@ public class JwtProperties {
         private String privateKey;
 
         /**
+         * The public key for verifying access tokens
+         */
+        @NotBlank
+        private String publicKey;
+
+        /**
          * Lifetime of access token in milliseconds
          */
         @Min(300_000) // 5 minutes
@@ -49,6 +55,7 @@ public class JwtProperties {
         /**
          * Lifetime of refresh token in milliseconds
          */
+        @Min(86400000)
         private long expirationMillis = 604_800_000;
     }
 }
