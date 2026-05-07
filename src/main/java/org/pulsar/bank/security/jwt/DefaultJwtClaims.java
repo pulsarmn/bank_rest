@@ -1,7 +1,10 @@
 package org.pulsar.bank.security.jwt;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 public class DefaultJwtClaims implements JwtClaims {
@@ -29,6 +32,30 @@ public class DefaultJwtClaims implements JwtClaims {
     @Override
     public Map<String, Object> getClaims() {
         return new LinkedHashMap<>(claims);
+    }
+
+    @Override
+    public List<Object> getClaimAsList(final String name) {
+        Object value = getClaim(name);
+
+        if (!(value instanceof List<?> raw)) {
+            return List.of();
+        }
+
+        return raw.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    @Override
+    public List<String> getClaimAsStringList(final String name) {
+        List<Object> list = getClaimAsList(name);
+
+        return list.stream()
+                .filter(Objects::nonNull)
+                .filter(String.class::isInstance)
+                .map(String.class::cast)
+                .toList();
     }
 
     public static class Builder implements JwtClaims.Builder {
