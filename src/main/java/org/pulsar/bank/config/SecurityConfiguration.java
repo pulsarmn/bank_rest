@@ -1,6 +1,7 @@
 package org.pulsar.bank.config;
 
 
+import org.pulsar.bank.security.JwtAuthorizationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,13 +16,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.intercept.AuthorizationFilter;
 
 
 @Configuration
 public class SecurityConfiguration {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationProvider authenticationProvider) {
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationProvider authenticationProvider, JwtAuthorizationFilter jwtAuthorizationFilter) {
         return httpSecurity
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
@@ -30,6 +32,7 @@ public class SecurityConfiguration {
                     configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
                 })
                 .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthorizationFilter, AuthorizationFilter.class)
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
                             .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
