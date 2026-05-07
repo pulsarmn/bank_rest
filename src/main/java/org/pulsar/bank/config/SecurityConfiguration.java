@@ -1,6 +1,7 @@
 package org.pulsar.bank.config;
 
 
+import org.pulsar.bank.security.DefaultAccessDeniedHandler;
 import org.pulsar.bank.security.JwtAuthorizationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -16,10 +18,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.intercept.AuthorizationFilter;
 
 
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfiguration {
 
     @Bean
@@ -39,6 +43,9 @@ public class SecurityConfiguration {
                             .requestMatchers(HttpMethod.POST, "/api/auth/refresh").permitAll()
                             .anyRequest().authenticated();
                 })
+                .exceptionHandling(configurer -> {
+                    configurer.accessDeniedHandler(accessDeniedHandler());
+                })
                 .build();
     }
 
@@ -57,5 +64,10 @@ public class SecurityConfiguration {
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    AccessDeniedHandler accessDeniedHandler() {
+        return new DefaultAccessDeniedHandler();
     }
 }
