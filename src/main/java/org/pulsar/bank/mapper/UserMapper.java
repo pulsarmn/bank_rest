@@ -1,7 +1,6 @@
 package org.pulsar.bank.mapper;
 
-import lombok.RequiredArgsConstructor;
-import org.pulsar.bank.dto.RegistrationRequest;
+import org.pulsar.bank.dto.request.RegistrationRequest;
 import org.pulsar.bank.entity.User;
 import org.springframework.stereotype.Component;
 

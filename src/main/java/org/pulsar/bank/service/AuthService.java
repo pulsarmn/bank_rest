@@ -3,8 +3,8 @@ package org.pulsar.bank.service;
 
 import lombok.RequiredArgsConstructor;
 import org.pulsar.bank.config.properties.JwtProperties;
-import org.pulsar.bank.dto.AuthRequest;
-import org.pulsar.bank.dto.AuthResponse;
+import org.pulsar.bank.dto.request.AuthRequest;
+import org.pulsar.bank.dto.response.AuthResponse;
 import org.pulsar.bank.entity.RefreshToken;
 import org.pulsar.bank.entity.User;
 import org.pulsar.bank.security.jwt.JwtClaims;

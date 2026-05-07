@@ -1,18 +1,16 @@
 package org.pulsar.bank.exception.handler;
 
 
-import org.pulsar.bank.dto.ErrorResponse;
+import org.pulsar.bank.dto.response.ErrorResponse;
 import org.pulsar.bank.exception.InvalidRefreshTokenException;
 import org.pulsar.bank.exception.RefreshTokenNotFoundException;
 import org.pulsar.bank.exception.UserAlreadyExistsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 

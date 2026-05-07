@@ -6,7 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.pulsar.bank.dto.RegistrationRequest;
+import org.pulsar.bank.dto.request.RegistrationRequest;
 import org.pulsar.bank.entity.User;
 import org.pulsar.bank.exception.UserAlreadyExistsException;
 import org.pulsar.bank.mapper.UserMapper;

@@ -2,7 +2,7 @@ package org.pulsar.bank.service;
 
 
 import lombok.RequiredArgsConstructor;
-import org.pulsar.bank.dto.RegistrationRequest;
+import org.pulsar.bank.dto.request.RegistrationRequest;
 import org.pulsar.bank.entity.User;
 import org.pulsar.bank.exception.UserAlreadyExistsException;
 import org.pulsar.bank.mapper.UserMapper;

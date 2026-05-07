@@ -6,7 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.pulsar.bank.dto.ErrorResponse;
+import org.pulsar.bank.dto.response.ErrorResponse;
 import org.pulsar.bank.exception.JwtVerificationException;
 import org.pulsar.bank.security.jwt.JwtClaims;
 import org.pulsar.bank.security.jwt.JwtVerifier;

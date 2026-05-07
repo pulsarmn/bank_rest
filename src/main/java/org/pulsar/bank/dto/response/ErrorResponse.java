@@ -1,4 +1,4 @@
-package org.pulsar.bank.dto;
+package org.pulsar.bank.dto.response;
 
 import org.springframework.http.HttpStatus;
 
