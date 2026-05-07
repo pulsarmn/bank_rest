@@ -3,7 +3,7 @@ package org.pulsar.bank.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.pulsar.bank.dto.request.AuthRequest;
-import org.pulsar.bank.dto.AuthResponse;
+import org.pulsar.bank.dto.response.AuthResponse;
 import org.pulsar.bank.dto.request.RefreshRequest;
 import org.pulsar.bank.dto.request.RegistrationRequest;
 import org.pulsar.bank.service.AuthService;

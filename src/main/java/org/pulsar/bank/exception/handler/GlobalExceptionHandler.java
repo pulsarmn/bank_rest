@@ -1,7 +1,7 @@
 package org.pulsar.bank.exception.handler;
 
 
-import org.pulsar.bank.dto.ErrorResponse;
+import org.pulsar.bank.dto.response.ErrorResponse;
 import org.pulsar.bank.exception.InvalidRefreshTokenException;
 import org.pulsar.bank.exception.RefreshTokenNotFoundException;
 import org.pulsar.bank.exception.UserAlreadyExistsException;

@@ -1,4 +1,4 @@
-package org.pulsar.bank.dto;
+package org.pulsar.bank.dto.response;
 
 
 public record AuthResponse(
