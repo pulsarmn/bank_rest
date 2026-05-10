@@ -22,8 +22,11 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "encrypted_number")
-    private String encryptedNumber;
+    @Column(name = "encrypted_pan")
+    private String encryptedPan;
+
+    @Column(name = "pan_hash")
+    private String panHash;
 
     @Column(name = "last_four_digits")
     private String lastFourDigits;

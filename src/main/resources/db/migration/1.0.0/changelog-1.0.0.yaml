@@ -3,3 +3,7 @@ databaseChangeLog:
       author: pulsar
       relativeToChangelogFile: true
       file: changesets/2026_05_02_base_entities.sql
+  - include:
+      author: pulsar
+      relativeToChangelogFile: true
+      file: changesets/2026_05_10_pan_hash_field.sql
