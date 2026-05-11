@@ -1,14 +1,17 @@
 package org.pulsar.bank.card.service;
 
 import lombok.RequiredArgsConstructor;
+import org.pulsar.bank.card.dto.CardBlockRequest;
 import org.pulsar.bank.card.dto.CardCreateRequest;
 import org.pulsar.bank.card.domain.Card;
 import org.pulsar.bank.auth.domain.User;
 import org.pulsar.bank.card.exception.CardCreationException;
 import org.pulsar.bank.auth.exception.UserNotFoundException;
+import org.pulsar.bank.card.exception.CardNotFoundException;
 import org.pulsar.bank.card.repository.CardRepository;
 import org.pulsar.bank.auth.repository.UserRepository;
 import org.pulsar.bank.card.CardFactory;
+import org.pulsar.bank.crypto.service.HmacService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,16 +19,17 @@ import java.util.Objects;
 
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class CardService {
 
     private final CardFactory cardFactory;
     private final CardRepository cardRepository;
     private final UserRepository userRepository;
+    private final HmacService hmacService;
 
     private static final int MAX_REGENERATION_ATTEMPS = 5;
 
-    @Transactional
     public void createCard(CardCreateRequest cardCreateRequest) {
         Objects.requireNonNull(cardCreateRequest);
 
@@ -45,5 +49,17 @@ public class CardService {
             }
         }
         throw new CardCreationException("Failed to create a unique card");
+    }
+
+    public void block(CardBlockRequest cardBlockRequest) {
+        String cardPan = cardBlockRequest.cardPan();
+        String cardPanHash = hmacService.hash(cardPan);
+
+        cardRepository.findByPanHash(cardPanHash)
+                .map(card -> {
+                    card.setStatus(Card.Status.BLOCKED);
+                    return card;
+                })
+                .orElseThrow(() -> new CardNotFoundException("Card not found"));
     }
 }
