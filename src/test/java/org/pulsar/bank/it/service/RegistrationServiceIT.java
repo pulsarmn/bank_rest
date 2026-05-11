@@ -1,12 +1,12 @@
 package org.pulsar.bank.it.service;
 
 import org.junit.jupiter.api.Test;
-import org.pulsar.bank.dto.request.RegistrationRequest;
-import org.pulsar.bank.entity.Role;
-import org.pulsar.bank.entity.User;
-import org.pulsar.bank.exception.UserAlreadyExistsException;
-import org.pulsar.bank.repository.UserRepository;
-import org.pulsar.bank.service.RegistrationService;
+import org.pulsar.bank.auth.dto.request.RegistrationRequest;
+import org.pulsar.bank.auth.domain.Role;
+import org.pulsar.bank.auth.domain.User;
+import org.pulsar.bank.auth.exception.UserAlreadyExistsException;
+import org.pulsar.bank.auth.repository.UserRepository;
+import org.pulsar.bank.auth.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;

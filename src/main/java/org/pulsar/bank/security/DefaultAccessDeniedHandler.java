@@ -3,7 +3,7 @@ package org.pulsar.bank.security;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.pulsar.bank.dto.response.ErrorResponse;
+import org.pulsar.bank.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;

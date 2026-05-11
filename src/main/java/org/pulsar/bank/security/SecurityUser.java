@@ -1,8 +1,7 @@
 package org.pulsar.bank.security;
 
 import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-import org.pulsar.bank.entity.User;
+import org.pulsar.bank.auth.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

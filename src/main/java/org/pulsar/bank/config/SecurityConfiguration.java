@@ -2,7 +2,7 @@ package org.pulsar.bank.config;
 
 
 import org.pulsar.bank.security.DefaultAccessDeniedHandler;
-import org.pulsar.bank.security.JwtAuthorizationFilter;
+import org.pulsar.bank.security.filter.JwtAuthorizationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

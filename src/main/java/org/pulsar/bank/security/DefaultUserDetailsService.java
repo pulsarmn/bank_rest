@@ -1,8 +1,8 @@
 package org.pulsar.bank.security;
 
 import lombok.RequiredArgsConstructor;
-import org.pulsar.bank.entity.User;
-import org.pulsar.bank.repository.UserRepository;
+import org.pulsar.bank.auth.domain.User;
+import org.pulsar.bank.auth.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
