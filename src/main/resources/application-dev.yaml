@@ -18,3 +18,5 @@ app:
       expiration-millis: 1800000
   encryption:
     key: MXcNP1unamARqbDU4eGY/j9DrFW/8eYwQpNsnul8a+0=
+  hmac:
+    key: I8KOq6SJY+FkPLna5goGPA22IN+T1fYFahxeTkAOoXs=
