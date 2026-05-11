@@ -2,6 +2,7 @@ package org.pulsar.bank.card.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.pulsar.bank.card.dto.CardBlockRequest;
 import org.pulsar.bank.card.dto.CardCreateRequest;
 import org.pulsar.bank.card.service.CardService;
 import org.springframework.http.HttpStatus;
@@ -26,5 +27,11 @@ public class CardRestController {
     public ResponseEntity<Void> create(@RequestBody @Validated CardCreateRequest cardCreateRequest) {
         cardService.createCard(cardCreateRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/block")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> block(@RequestBody @Validated CardBlockRequest cardBlockRequest) {
+        return ResponseEntity.ok().build();
     }
 }
