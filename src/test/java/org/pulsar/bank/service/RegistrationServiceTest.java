@@ -6,11 +6,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.pulsar.bank.dto.request.RegistrationRequest;
-import org.pulsar.bank.entity.User;
-import org.pulsar.bank.exception.UserAlreadyExistsException;
-import org.pulsar.bank.mapper.UserMapper;
-import org.pulsar.bank.repository.UserRepository;
+import org.pulsar.bank.auth.service.RegistrationService;
+import org.pulsar.bank.auth.dto.request.RegistrationRequest;
+import org.pulsar.bank.auth.domain.User;
+import org.pulsar.bank.auth.exception.UserAlreadyExistsException;
+import org.pulsar.bank.auth.mapper.UserMapper;
+import org.pulsar.bank.auth.repository.UserRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

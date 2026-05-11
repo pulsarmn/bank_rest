@@ -4,9 +4,10 @@ package org.pulsar.bank.mapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.pulsar.bank.dto.request.RegistrationRequest;
-import org.pulsar.bank.entity.Role;
-import org.pulsar.bank.entity.User;
+import org.pulsar.bank.auth.mapper.UserMapper;
+import org.pulsar.bank.auth.dto.request.RegistrationRequest;
+import org.pulsar.bank.auth.domain.Role;
+import org.pulsar.bank.auth.domain.User;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
