@@ -39,6 +39,7 @@ public class CardRestController {
 
     @PostMapping("/activate")
     public ResponseEntity<Void> activate(@RequestBody @Validated CardActivateRequest cardActivateRequest) {
+        cardService.activate(cardActivateRequest);
         return ResponseEntity.ok().build();
     }
 }

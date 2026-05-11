@@ -1,6 +1,7 @@
 package org.pulsar.bank.card.service;
 
 import lombok.RequiredArgsConstructor;
+import org.pulsar.bank.card.dto.CardActivateRequest;
 import org.pulsar.bank.card.dto.CardBlockRequest;
 import org.pulsar.bank.card.dto.CardCreateRequest;
 import org.pulsar.bank.card.domain.Card;
@@ -53,11 +54,20 @@ public class CardService {
 
     public void block(CardBlockRequest cardBlockRequest) {
         String cardPan = cardBlockRequest.cardPan();
+        changeCardStatus(cardPan, Card.Status.BLOCKED);
+    }
+
+    public void activate(CardActivateRequest cardActivateRequest) {
+        String cardPan = cardActivateRequest.cardPan();
+        changeCardStatus(cardPan, Card.Status.ACTIVE);
+    }
+
+    private void changeCardStatus(String cardPan, Card.Status status) {
         String cardPanHash = hmacService.hash(cardPan);
 
         cardRepository.findByPanHash(cardPanHash)
                 .map(card -> {
-                    card.setStatus(Card.Status.BLOCKED);
+                    card.setStatus(status);
                     return card;
                 })
                 .orElseThrow(() -> new CardNotFoundException("Card not found"));
