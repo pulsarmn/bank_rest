@@ -2,6 +2,7 @@ package org.pulsar.bank.card.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.pulsar.bank.card.dto.CardActivateRequest;
 import org.pulsar.bank.card.dto.CardBlockRequest;
 import org.pulsar.bank.card.dto.CardCreateRequest;
 import org.pulsar.bank.card.service.CardService;
@@ -33,6 +34,12 @@ public class CardRestController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> block(@RequestBody @Validated CardBlockRequest cardBlockRequest) {
         cardService.block(cardBlockRequest);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/activate")
+    public ResponseEntity<Void> activate(@RequestBody @Validated CardActivateRequest cardActivateRequest) {
+        cardService.activate(cardActivateRequest);
         return ResponseEntity.ok().build();
     }
 }
