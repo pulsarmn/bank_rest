@@ -32,6 +32,7 @@ public class CardRestController {
     @PostMapping("/block")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> block(@RequestBody @Validated CardBlockRequest cardBlockRequest) {
+        cardService.block(cardBlockRequest);
         return ResponseEntity.ok().build();
     }
 }
